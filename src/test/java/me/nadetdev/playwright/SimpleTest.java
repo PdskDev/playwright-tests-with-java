@@ -1,19 +1,45 @@
 package me.nadetdev.playwright;
 
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.junit.Options;
-import com.microsoft.playwright.junit.OptionsFactory;
-import com.microsoft.playwright.junit.UsePlaywright;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import com.microsoft.playwright.*;
 
-@UsePlaywright(SimpleTest.CustomOptions.class)
+import java.util.Arrays;
+
+import org.junit.jupiter.api.*;
+
 public class SimpleTest {
 
+  private static Playwright playwright;
+  private static Browser browser;
+  private static BrowserContext browserContext;
+  private Page page;
+
+  @BeforeAll
+  public static void setupBrowser() {
+    playwright = Playwright.create();
+    browser =
+            playwright
+                    .chromium()
+                    .launch(
+                            new BrowserType.LaunchOptions()
+                                    .setHeadless(false)
+                                    .setArgs(Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu")));
+
+    browserContext = browser.newContext();
+  }
+
+  @BeforeEach
+  public void setupPage() {
+    page = browserContext.newPage();
+  }
+
+  @AfterAll
+  public static void teardown() {
+    browser.close();
+    playwright.close();
+  }
+
   @Test
-  void shouldShowThePageTitle(Page page) {
+  void shouldShowThePageTitle() {
     page.navigate("https://practicesoftwaretesting.com/");
     String pageTitle = page.title();
 
@@ -21,7 +47,7 @@ public class SimpleTest {
   }
 
   @Test
-  void shouldSearchByKeyword(Page page) {
+  void shouldSearchByKeyword() {
     page.navigate("https://practicesoftwaretesting.com/");
     page.locator("[placeholder=Search]").fill("Pliers");
     page.locator("button:has-text('Search')").click();
@@ -29,16 +55,5 @@ public class SimpleTest {
     int matchingSearchResults = page.locator(".card").count();
 
     Assertions.assertTrue(matchingSearchResults > 0);
-  }
-
-  public static class CustomOptions implements OptionsFactory {
-    @Override
-    public Options getOptions() {
-      return new Options()
-          .setHeadless(false)
-          .setLaunchOptions(
-              new BrowserType.LaunchOptions()
-                  .setArgs(Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu")));
-    }
   }
 }
