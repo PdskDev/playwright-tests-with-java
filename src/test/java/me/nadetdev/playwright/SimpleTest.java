@@ -1,43 +1,19 @@
 package me.nadetdev.playwright;
 
-import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
-import org.junit.jupiter.api.AfterEach;
+import com.microsoft.playwright.junit.Options;
+import com.microsoft.playwright.junit.OptionsFactory;
+import com.microsoft.playwright.junit.UsePlaywright;
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
+@UsePlaywright(SimpleTest.CustomOptions.class)
 public class SimpleTest {
-  private Playwright playwright;
-  private Browser browser;
-  private Page page;
-
-  @BeforeEach
-  void setup() {
-    playwright = Playwright.create();
-    browser =
-        playwright
-            .chromium()
-            .launch(
-                new BrowserType.LaunchOptions()
-                    .setArgs(Arrays.asList("--no-sandbox", "--disable-gpu", "--disable-extensions"))
-                    .setHeadless(true)
-            );
-    page = browser.newPage();
-  }
-
-  @AfterEach
-  void teardown() {
-    browser.close();
-    playwright.close();
-  }
 
   @Test
-  void shouldShowThePageTitle() {
+  void shouldShowThePageTitle(Page page) {
     page.navigate("https://practicesoftwaretesting.com/");
     String pageTitle = page.title();
 
@@ -45,7 +21,7 @@ public class SimpleTest {
   }
 
   @Test
-  void shouldSearchByKeyword() {
+  void shouldSearchByKeyword(Page page) {
     page.navigate("https://practicesoftwaretesting.com/");
     page.locator("[placeholder=Search]").fill("Pliers");
     page.locator("button:has-text('Search')").click();
@@ -53,5 +29,16 @@ public class SimpleTest {
     int matchingSearchResults = page.locator(".card").count();
 
     Assertions.assertTrue(matchingSearchResults > 0);
+  }
+
+  public static class CustomOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+      return new Options()
+          .setHeadless(false)
+          .setLaunchOptions(
+              new BrowserType.LaunchOptions()
+                  .setArgs(Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu")));
+    }
   }
 }
