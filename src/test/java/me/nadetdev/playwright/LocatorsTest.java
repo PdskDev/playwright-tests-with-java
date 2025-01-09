@@ -17,10 +17,20 @@ public class LocatorsTest {
   @BeforeAll
   static void setUpBrowser() {
     playwright = Playwright.create();
-    browser = playwright.chromium().launch(
-            new BrowserType.LaunchOptions().setHeadless(false)
-                    .setArgs(Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu"))
-    );
+    browser =
+        playwright
+            .chromium()
+            .launch(
+                new BrowserType.LaunchOptions()
+                    .setHeadless(false)
+                    .setArgs(
+                        Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu")));
+  }
+
+  @AfterAll
+  static void tearDown() {
+    browser.close();
+    playwright.close();
   }
 
   @BeforeEach
@@ -34,10 +44,9 @@ public class LocatorsTest {
     browserContext.close();
   }
 
-  @AfterAll
-  static void tearDown() {
-    browser.close();
-    playwright.close();
+  private void openPage() {
+    page.navigate("https://practicesoftwaretesting.com");
+    page.waitForLoadState(LoadState.NETWORKIDLE);
   }
 
   @DisplayName("Locating element by text")
@@ -72,9 +81,41 @@ public class LocatorsTest {
     }
   }
 
+  @DisplayName("Locating element by labels and placeholder")
+  @Nested
+  class LocaltingElementsByLabelsAndPlaceholders {
 
-  private void openPage() {
-    page.navigate("https://practicesoftwaretesting.com");
-    page.waitForLoadState(LoadState.NETWORKIDLE);
+    @BeforeEach
+    void openTheCatalogPage() {
+      openPage();
+    }
+
+    @DisplayName("Locate element by label")
+    @Test
+    void byLabelAndPlaceholder() {
+      page.getByText("Contact").click();
+      page.getByLabel("First name").fill("Play");
+      page.getByPlaceholder("Your last name").fill("Wright");
+      page.getByPlaceholder("email").fill("test@email.com");
+    }
+
+    @DisplayName("Locate element by test id")
+    @Test
+    void byTestId() {
+      playwright.selectors().setTestIdAttribute("data-test");
+      page.getByTestId("search-query").fill("pliers");
+      page.getByTestId("search-submit").click();
+      PlaywrightAssertions.assertThat(page.getByTestId("search-caption")).isVisible();
+      PlaywrightAssertions.assertThat(page.getByTestId("search-caption"))
+          .containsText("Searched for: pliers");
+    }
+
+    @DisplayName("Locate element by title")
+    @Test
+    void byTitle() {
+      page.getByAltText("Bolt Cutters").click();
+      page.getByTitle("Practice Software Testing - Toolshop").click();
+      PlaywrightAssertions.assertThat(page.getByText("Combination Pliers")).isVisible();
+    }
   }
 }
