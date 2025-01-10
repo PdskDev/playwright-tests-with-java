@@ -19,6 +19,8 @@ public class LocatorsTest {
   @BeforeAll
   static void setUpBrowser() {
     playwright = Playwright.create();
+    playwright.selectors().setTestIdAttribute("data-test");
+
     browser =
         playwright
             .chromium()
@@ -224,8 +226,10 @@ public class LocatorsTest {
     void locateButtonByCssClass() {
       page.locator("#first_name").fill("NadetDev");
       page.locator(".btnSubmit").click();
+      page.waitForSelector(".alert");
+
       List<String> alertMessages = page.locator(".alert").allTextContents();
-      //PlaywrightAssertions.assertThat(page.locator("#first_name")).hasValue("NadetDev");
+
       Assertions.assertFalse(alertMessages.isEmpty());
     }
 
@@ -240,6 +244,7 @@ public class LocatorsTest {
       List<String> alertMessages = page.locator(".alert").allTextContents();
 
       Assertions.assertFalse(alertMessages.isEmpty());
+      Assertions.assertEquals(4, alertMessages.size());
     }
 
     @DisplayName("Locate list and filter element")
@@ -250,18 +255,40 @@ public class LocatorsTest {
 
       PlaywrightAssertions.assertThat(page.getByLabel("Hammer")).isChecked();
 
-      page.waitForSelector("h5:has-text('Claw Hammer with Shock Reduction Grip')");
+      page.waitForSelector("h5:has-text('Sledgehammer')");
 
-      PlaywrightAssertions.assertThat(page.locator("h5:has-text('Claw Hammer with Shock Reduction Grip')")).isVisible();
+      PlaywrightAssertions.assertThat(page.locator("h5:has-text('Sledgehammer')")).isVisible();
 
-      /*List<String> listProducts =
-          page.locator(".card-title")
-                  .filter(new Locator.FilterOptions().setHasText("claw"))
-                  .allTextContents();
+      List<String> productNames = page.getByTestId("product-name").allTextContents();
 
-      Assertions.assertFalse(listProducts.isEmpty());
-      Assertions.assertEquals(3, listProducts.size());*/
+      Assertions.assertFalse(productNames.isEmpty());
+      Assertions.assertEquals(7, productNames.size());
     }
+
+    @DisplayName("Locate list and filter element")
+    @Test
+    void searchOfPliers() {
+
+      page.navigate("https://practicesoftwaretesting.com/");
+      page.getByPlaceholder("Search").fill("pliers");
+      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search")).click();
+
+      PlaywrightAssertions.assertThat(page.locator(".card")).hasCount(4);
+
+      List<String> productNames = page.getByTestId("product-name").allTextContents();
+
+      org.assertj.core.api.Assertions.assertThat(productNames).allMatch(name -> name.contains("Pliers"));
+
+      Locator outOfStockItem = page.locator(".card")
+              .filter(new Locator.FilterOptions().setHasText("Out of stock"))
+              .getByTestId("product-name");
+
+      PlaywrightAssertions.assertThat(outOfStockItem).hasCount(1);
+      PlaywrightAssertions.assertThat(outOfStockItem).hasText("Long Nose Pliers");
+    }
+
+
+
 
 
   }
