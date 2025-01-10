@@ -11,7 +11,7 @@ public class HeadlessChromeOptions implements OptionsFactory {
   @Override
   public Options getOptions() {
     return new Options()
-        .setHeadless(false)
+        .setHeadless(true)
         .setTestIdAttribute("data-test")
         .setLaunchOptions(
             new BrowserType.LaunchOptions()

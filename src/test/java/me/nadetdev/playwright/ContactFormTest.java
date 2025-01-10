@@ -1,6 +1,7 @@
 package me.nadetdev.playwright;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.SelectOption;
@@ -12,54 +13,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+@UsePlaywright(AlterSimpleTest.CustomOptions.class)
 public class ContactFormTest {
-  protected static Playwright playwright;
-  protected static Browser browser;
-  protected static BrowserContext browserContext;
-
-  Page page;
-
-  @BeforeAll
-  static void setUpBrowser() {
-    playwright = Playwright.create();
-    playwright.selectors().setTestIdAttribute("data-test");
-
-    browser =
-        playwright
-            .chromium()
-            .launch(
-                new BrowserType.LaunchOptions()
-                    .setHeadless(false)
-                    .setArgs(
-                        Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu")));
-  }
-
-  @AfterAll
-  static void tearDown() {
-    browser.close();
-    playwright.close();
-  }
 
   @BeforeEach
-  void setUp() {
-    browserContext = browser.newContext();
-    page = browserContext.newPage();
+  void setUp(Page page) {
     page.navigate("https://practicesoftwaretesting.com/contact");
     page.waitForLoadState(LoadState.NETWORKIDLE);
   }
 
-  @AfterEach
-  void closeContext() {
-    browserContext.close();
-  }
-
   @DisplayName("Interact with text fields")
   @Test
-  void whenInteractWithTextFields() throws URISyntaxException {
+  void whenInteractWithTextFields(Page page) throws URISyntaxException {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
     var emailAddressField = page.getByLabel("Email");
@@ -90,7 +59,7 @@ public class ContactFormTest {
 
   @DisplayName("Interact with mandatory fields")
   @Test
-  void whenInteractWithMandatoryFields() throws URISyntaxException {
+  void whenInteractWithMandatoryFields(Page page) {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
     var emailAddressField = page.getByLabel("Email");
@@ -108,7 +77,7 @@ public class ContactFormTest {
   @DisplayName("Interact with mandatory fields")
   @ParameterizedTest
   @ValueSource(strings = {"First name", "Last name", "Email", "Message"})
-  void whenInteractWithMandatoryFieldsParameterized(String fieldName) {
+  void whenInteractWithMandatoryFieldsParameterized(String fieldName, Page page) {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
     var emailAddressField = page.getByLabel("Email");
