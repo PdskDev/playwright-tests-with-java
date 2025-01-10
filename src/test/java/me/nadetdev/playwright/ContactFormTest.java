@@ -1,0 +1,135 @@
+package me.nadetdev.playwright;
+
+import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.LoadState;
+import com.microsoft.playwright.options.SelectOption;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
+public class ContactFormTest {
+  protected static Playwright playwright;
+  protected static Browser browser;
+  protected static BrowserContext browserContext;
+
+  Page page;
+
+  @BeforeAll
+  static void setUpBrowser() {
+    playwright = Playwright.create();
+    playwright.selectors().setTestIdAttribute("data-test");
+
+    browser =
+        playwright
+            .chromium()
+            .launch(
+                new BrowserType.LaunchOptions()
+                    .setHeadless(false)
+                    .setArgs(
+                        Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu")));
+  }
+
+  @AfterAll
+  static void tearDown() {
+    browser.close();
+    playwright.close();
+  }
+
+  @BeforeEach
+  void setUp() {
+    browserContext = browser.newContext();
+    page = browserContext.newPage();
+    page.navigate("https://practicesoftwaretesting.com/contact");
+    page.waitForLoadState(LoadState.NETWORKIDLE);
+  }
+
+  @AfterEach
+  void closeContext() {
+    browserContext.close();
+  }
+
+  @DisplayName("Interact with text fields")
+  @Test
+  void whenInteractWithTextFields() throws URISyntaxException {
+    var firstNameField = page.getByLabel("First name");
+    var lastNameField = page.getByLabel("Last name");
+    var emailAddressField = page.getByLabel("Email");
+    var messageField = page.getByLabel("Message");
+    var subjectField = page.getByLabel("Subject");
+    var uploadField = page.getByLabel("Attachment");
+
+    firstNameField.fill("NadetDev");
+    lastNameField.fill("Testman");
+    emailAddressField.fill("test@email.com");
+    // subjectField.selectOption("Webmaster");
+    // subjectField.selectOption(new SelectOption().setLabel("Payments"));
+    // subjectField.selectOption(new SelectOption().setIndex(3));
+    subjectField.selectOption(new SelectOption().setValue("warranty"));
+    messageField.fill("This is a e2e test with Playwright");
+
+    Path fileToUpload = Paths.get(ClassLoader.getSystemResource("data/sample-data.txt").toURI());
+    page.setInputFiles("#attachment", fileToUpload);
+    String uploadedFile = uploadField.inputValue();
+
+    assertThat(firstNameField).hasValue("NadetDev");
+    assertThat(lastNameField).hasValue("Testman");
+    assertThat(emailAddressField).hasValue("test@email.com");
+    assertThat(subjectField).hasValue("warranty");
+    assertThat(messageField).hasValue("This is a e2e test with Playwright");
+    Assertions.assertThat(uploadedFile).endsWith("sample-data.txt");
+  }
+
+  @DisplayName("Interact with mandatory fields")
+  @Test
+  void whenInteractWithMandatoryFields() throws URISyntaxException {
+    var firstNameField = page.getByLabel("First name");
+    var lastNameField = page.getByLabel("Last name");
+    var emailAddressField = page.getByLabel("Email");
+    var messageField = page.getByLabel("Message");
+    var subjectField = page.getByLabel("Subject");
+    var sendButton = page.getByText("Send");
+
+    sendButton.click();
+
+    var errorMessage = page.getByRole(AriaRole.ALERT).getByText("First name is required");
+
+    assertThat(errorMessage).isVisible();
+  }
+
+  @DisplayName("Interact with mandatory fields")
+  @ParameterizedTest
+  @ValueSource(strings = {"First name", "Last name", "Email", "Message"})
+  void whenInteractWithMandatoryFieldsParameterized(String fieldName) {
+    var firstNameField = page.getByLabel("First name");
+    var lastNameField = page.getByLabel("Last name");
+    var emailAddressField = page.getByLabel("Email");
+    var messageField = page.getByLabel("Message");
+    var subjectField = page.getByLabel("Subject");
+    var sendButton = page.getByText("Send");
+
+    // Fill in field values
+    firstNameField.fill("NadetDev");
+    lastNameField.fill("Testman");
+    emailAddressField.fill("test@email.com");
+    messageField.fill("This is a e2e test with Playwright");
+    subjectField.selectOption(new SelectOption().setLabel("Payments"));
+
+    // Clear one field
+    page.getByLabel(fieldName).clear();
+
+    sendButton.click();
+
+    var errorMessage = page.getByRole(AriaRole.ALERT).getByText(fieldName + " is required");
+
+    assertThat(errorMessage).isVisible();
+  }
+}
