@@ -1,4 +1,4 @@
-package me.nadetdev.playwright;
+package me.nadetdev.playwright.tutos;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

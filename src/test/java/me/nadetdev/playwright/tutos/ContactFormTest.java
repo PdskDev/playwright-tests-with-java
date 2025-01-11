@@ -1,4 +1,4 @@
-package me.nadetdev.playwright;
+package me.nadetdev.playwright.tutos;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.junit.UsePlaywright;
