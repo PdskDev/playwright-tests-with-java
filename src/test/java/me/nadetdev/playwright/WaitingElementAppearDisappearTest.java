@@ -50,10 +50,7 @@ public class WaitingElementAppearDisappearTest {
   void shouldWaitingForApiCall(Page page) {
     // page.getByTestId("product-price").first().waitFor();
     page.waitForResponse(
-        "**/products?sort**",
-        () -> {
-          page.getByTestId("sort").selectOption("Price (High - Low)");
-        });
+        "**/products?sort**", () -> page.getByTestId("sort").selectOption("Price (High - Low)"));
 
     var productPrices =
         page.getByTestId("product-price").allInnerTexts().stream()
