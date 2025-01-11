@@ -1,4 +1,4 @@
-package me.nadetdev.playwright.login.objects;
+package me.nadetdev.playwright.apicalls;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.RequestOptions;
