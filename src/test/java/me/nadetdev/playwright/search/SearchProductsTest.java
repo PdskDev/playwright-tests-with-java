@@ -3,7 +3,7 @@ package me.nadetdev.playwright.search;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import me.nadetdev.playwright.fixtures.PlaywrightTestingBase;
-import me.nadetdev.playwright.search.objects.ProductList;
+import me.nadetdev.playwright.products.ProductListPage;
 import me.nadetdev.playwright.search.objects.SearchComponent;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class SearchProductPageObjectTest extends PlaywrightTestingBase {
+public class SearchProductsTest extends PlaywrightTestingBase {
 
     @BeforeEach
     void openPage() {
@@ -38,7 +38,7 @@ public class SearchProductPageObjectTest extends PlaywrightTestingBase {
         SearchComponent searchComponent = new SearchComponent(page);
         searchComponent.searchBy("tape");
 
-        ProductList productList = new ProductList(page);
+        ProductListPage productList = new ProductListPage(page);
         var matchingProducts = productList.getProductNames();
 
         Assertions.assertThat(matchingProducts)

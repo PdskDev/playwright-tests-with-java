@@ -8,7 +8,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.junit.UsePlaywright;
 import java.util.HashMap;
 import java.util.stream.Stream;
-import me.nadetdev.playwright.config.HeadlessChromeOptions;
+import me.nadetdev.playwright.config.PlaywrightChromeOptions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-@UsePlaywright(HeadlessChromeOptions.class)
+@UsePlaywright(PlaywrightChromeOptions.class)
 public class ApiCallTest {
 
   private static APIRequestContext apiRequestContext;

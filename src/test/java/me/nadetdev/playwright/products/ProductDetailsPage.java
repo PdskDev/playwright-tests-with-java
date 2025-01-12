@@ -1,4 +1,4 @@
-package me.nadetdev.playwright.cart.objects;
+package me.nadetdev.playwright.products;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;

@@ -2,10 +2,10 @@ package me.nadetdev.playwright.navbar.objects;
 
 import com.microsoft.playwright.Page;
 
-public class NavBar {
+public class NavBarComponent {
     private final Page page;
 
-    public NavBar(Page page) {
+    public NavBarComponent(Page page) {
         this.page = page;
     }
 

@@ -1,33 +1,32 @@
 package me.nadetdev.playwright.cart;
 
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.junit.UsePlaywright;
-import com.microsoft.playwright.options.AriaRole;
-import me.nadetdev.playwright.cart.objects.CartLineItem;
-import me.nadetdev.playwright.cart.objects.CheckoutPage;
-import me.nadetdev.playwright.cart.objects.ProductDetailsPage;
-import me.nadetdev.playwright.config.HeadlessChromeOptions;
-import me.nadetdev.playwright.home.HomePage;
-import me.nadetdev.playwright.navbar.objects.NavBar;
-import me.nadetdev.playwright.search.objects.ProductList;
-import me.nadetdev.playwright.search.objects.SearchComponent;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-
-import java.util.List;
-
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-@UsePlaywright(HeadlessChromeOptions.class)
+import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Tracing;
+import com.microsoft.playwright.junit.UsePlaywright;
+import com.microsoft.playwright.options.AriaRole;
+import java.nio.file.Paths;
+import java.util.List;
+import me.nadetdev.playwright.cart.objects.CartLineItem;
+import me.nadetdev.playwright.cart.objects.CheckoutPage;
+import me.nadetdev.playwright.config.PlaywrightChromeOptions;
+import me.nadetdev.playwright.home.HomePage;
+import me.nadetdev.playwright.navbar.objects.NavBarComponent;
+import me.nadetdev.playwright.products.ProductDetailsPage;
+import me.nadetdev.playwright.products.ProductListPage;
+import me.nadetdev.playwright.search.objects.SearchComponent;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.*;
+
+@UsePlaywright(PlaywrightChromeOptions.class)
 public class AddToCartTest {
   HomePage homePage;
   SearchComponent searchComponent;
-  ProductList productList;
+  ProductListPage productList;
   ProductDetailsPage productDetailsPage;
-  NavBar navBar;
+  NavBarComponent navBar;
   CheckoutPage checkoutPage ;
 
   @BeforeEach
@@ -36,10 +35,25 @@ public class AddToCartTest {
 
     homePage = new HomePage(page);
     searchComponent = new SearchComponent(page);
-    productList = new ProductList(page);
+    productList = new ProductListPage(page);
     productDetailsPage = new ProductDetailsPage(page);
-    navBar = new NavBar(page);
+    navBar = new NavBarComponent(page);
     checkoutPage = new CheckoutPage(page);
+  }
+
+  @BeforeEach
+  void setupTrace(BrowserContext context){
+    context.tracing().start(new Tracing.StartOptions()
+            .setScreenshots(true)
+            .setSnapshots(true)
+            .setSources(true));
+  }
+
+  @AfterEach
+  void recordTrace(TestInfo testInfo, BrowserContext context){
+    String traceName = testInfo.getDisplayName().replace(" ", "-").toLowerCase();
+    context.tracing().stop(new Tracing.StopOptions()
+            .setPath(Paths.get("tests-" + traceName + "-trace.zip")));
   }
 
   @DisplayName("Without Page Objects")
@@ -137,6 +151,32 @@ public class AddToCartTest {
 
     List<String> productNames = lineItems.stream().map(CartLineItem::title).toList();
     Assertions.assertThat(productNames).contains("Combination Pliers", "Claw Hammer with Shock Reduction Grip", "Cordless Drill 24V");
+  }
+
+  @DisplayName("search for unknown product name")
+  @Test
+  void whenSearchUnknownProductName() {
+
+    searchComponent.searchBy("no-product-name");
+    var machingProducts = productList.getProductNames();
+
+    Assertions.assertThat(machingProducts).isEmpty();
+    Assertions.assertThat(productList.noProductsFound()).contains("There are no products found.");
+  }
+
+  @DisplayName("reset search form and get default products")
+  @Test
+  void whenResetSearchFormAndGetDefaultProducts() {
+
+    searchComponent.searchBy("pliers");
+    var machingProductsOfFirstSearch = productList.getProductNames();
+
+    Assertions.assertThat(machingProductsOfFirstSearch).hasSize(4);
+
+    searchComponent.clearSearch();
+    var machingProductsAfterReset = productList.getProductNames();
+
+    Assertions.assertThat(machingProductsAfterReset).hasSize(9);
   }
 
 }
