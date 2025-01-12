@@ -36,6 +36,5 @@ public class LoginWithRegisteredUserTest extends PlaywrightTestingBase {
     loginPage.loginAs(invalidUser.withPassword("wrong-password"));
 
     Assertions.assertThat( loginPage.loginErrorMessage()).isEqualTo("Invalid email or password");
-
   }
 }
