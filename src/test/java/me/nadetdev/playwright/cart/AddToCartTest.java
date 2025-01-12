@@ -1,11 +1,12 @@
 package me.nadetdev.playwright.cart;
 
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 import me.nadetdev.playwright.cart.objects.CartLineItem;
 import me.nadetdev.playwright.cart.objects.CheckoutPage;
 import me.nadetdev.playwright.cart.objects.ProductDetailsPage;
-import me.nadetdev.playwright.fixtures.PlaywrightTestingBase;
+import me.nadetdev.playwright.config.HeadlessChromeOptions;
 import me.nadetdev.playwright.home.HomePage;
 import me.nadetdev.playwright.navbar.objects.NavBar;
 import me.nadetdev.playwright.search.objects.ProductList;
@@ -15,11 +16,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 import java.util.List;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class AddToCartTest extends PlaywrightTestingBase {
+@UsePlaywright(HeadlessChromeOptions.class)
+public class AddToCartTest {
   HomePage homePage;
   SearchComponent searchComponent;
   ProductList productList;
@@ -28,7 +31,7 @@ public class AddToCartTest extends PlaywrightTestingBase {
   CheckoutPage checkoutPage ;
 
   @BeforeEach
-  void openPage() {
+  void openPage(Page page) {
     page.navigate("https://practicesoftwaretesting.com");
 
     homePage = new HomePage(page);
@@ -41,7 +44,7 @@ public class AddToCartTest extends PlaywrightTestingBase {
 
   @DisplayName("Without Page Objects")
   @Test
-  void withoutPageObjects() {
+  void withoutPageObjects(Page page) {
     // Search for pliers
     page.waitForResponse(
         "**/products/search?q=pliers",
@@ -67,7 +70,7 @@ public class AddToCartTest extends PlaywrightTestingBase {
     assertThat(page.getByTestId("cart-quantity").getByText("3")).isVisible();
   }
 
-  @DisplayName("Without Page Objects")
+  @DisplayName("With Page Objects")
   @Test
   void withObjectsAddToCartAndViewCart() {
     searchComponent.searchBy("pliers");
