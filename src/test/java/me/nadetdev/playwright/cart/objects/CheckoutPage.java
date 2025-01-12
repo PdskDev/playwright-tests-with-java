@@ -11,19 +11,24 @@ public class CheckoutPage {
   }
 
   public List<CartLineItem> getLineItems() {
+    page.locator("app-cart tbody tr").waitFor();
     return page.locator("app-cart tbody tr").all().stream()
         .map(
             row -> {
               String title = row.getByTestId("product-title").innerText();
               int quantity = Integer.parseInt(row.getByTestId("product-quantity").inputValue());
-              double price = Double.parseDouble(cleanCurrencySymbol(row.getByTestId("product-price").innerText()));
-              double total = Double.parseDouble(cleanCurrencySymbol(row.getByTestId("line-price").innerText()));
+              double price =
+                  Double.parseDouble(
+                      cleanCurrencySymbol(row.getByTestId("product-price").innerText()));
+              double total =
+                  Double.parseDouble(
+                      cleanCurrencySymbol(row.getByTestId("line-price").innerText()));
               return new CartLineItem(title, quantity, price, total);
             })
         .toList();
   }
 
-  private String cleanCurrencySymbol(String value){
-      return value.replace("$", "");
+  private String cleanCurrencySymbol(String value) {
+    return value.replace("$", "");
   }
 }

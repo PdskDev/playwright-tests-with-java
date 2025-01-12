@@ -13,16 +13,9 @@ public class NavBar {
         page.getByTestId("nav-cart").click();
     }
 
-    public void openCartByQty(int qty) {
+    /*public void openCartByQty(int qty) {
         page.waitForCondition(() ->
                 page.getByTestId("cart-quantity").textContent().equals(String.valueOf(qty)));
         page.getByTestId("nav-cart").click();
-
-    /*page.waitForResponse(
-        response -> response.url().contains("/carts") && response.request().method().equals("GET"),
-        () -> {
-          page.getByText("Add to cart").click();
-          page.getByRole(AriaRole.ALERT).click();
-        });*/
-    }
+    }*/
 }
