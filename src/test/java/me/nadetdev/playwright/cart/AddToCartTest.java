@@ -6,6 +6,7 @@ import me.nadetdev.playwright.cart.objects.CartLineItem;
 import me.nadetdev.playwright.cart.objects.CheckoutPage;
 import me.nadetdev.playwright.cart.objects.ProductDetailsPage;
 import me.nadetdev.playwright.fixtures.PlaywrightTestingBase;
+import me.nadetdev.playwright.home.HomePage;
 import me.nadetdev.playwright.navbar.objects.NavBar;
 import me.nadetdev.playwright.search.objects.ProductList;
 import me.nadetdev.playwright.search.objects.SearchComponent;
@@ -19,10 +20,23 @@ import java.util.List;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class AddToCartTest extends PlaywrightTestingBase {
+  HomePage homePage;
+  SearchComponent searchComponent;
+  ProductList productList;
+  ProductDetailsPage productDetailsPage;
+  NavBar navBar;
+  CheckoutPage checkoutPage ;
 
   @BeforeEach
   void openPage() {
     page.navigate("https://practicesoftwaretesting.com");
+
+    homePage = new HomePage(page);
+    searchComponent = new SearchComponent(page);
+    productList = new ProductList(page);
+    productDetailsPage = new ProductDetailsPage(page);
+    navBar = new NavBar(page);
+    checkoutPage = new CheckoutPage(page);
   }
 
   @DisplayName("Without Page Objects")
@@ -56,29 +70,70 @@ public class AddToCartTest extends PlaywrightTestingBase {
   @DisplayName("Without Page Objects")
   @Test
   void withObjectsAddToCartAndViewCart() {
-    SearchComponent searchComponent = new SearchComponent(page);
     searchComponent.searchBy("pliers");
-
-    ProductList productList = new ProductList(page);
     productList.viewProductDetails("Combination Pliers");
 
-    ProductDetailsPage productDetailsPage = new ProductDetailsPage(page);
     productDetailsPage.increaseQuantityBy(2);
     productDetailsPage.addToCart();
 
-    NavBar navBar = new NavBar(page);
     navBar.openCart();
 
-    CheckoutPage checkoutPage = new CheckoutPage(page);
     List<CartLineItem> lineItems = checkoutPage.getLineItems();
 
-      Assertions.assertThat(lineItems)
-              .hasSize(1)
-              .first()
-              .satisfies(item -> {
-                  Assertions.assertThat(item.title()).contains("Combination Pliers");
-                  Assertions.assertThat(item.quantity()).isEqualTo(3);
-                  Assertions.assertThat(item.total()).isEqualTo(item.quantity() * item.price());
-              });
+    Assertions.assertThat(lineItems)
+        .hasSize(1)
+        .first()
+        .satisfies(
+            item -> {
+              Assertions.assertThat(item.title()).contains("Combination Pliers");
+              Assertions.assertThat(item.quantity()).isEqualTo(3);
+              Assertions.assertThat(item.total()).isEqualTo(item.quantity() * item.price());
+            });
   }
+
+  @DisplayName("WithPage Objects add multiple items to cart")
+  @Test
+  void withObjectAddMultipleItemsToCard() {
+    //Add first item
+    searchComponent.searchBy("pliers");
+    productList.viewProductDetails("Combination Pliers");
+    productDetailsPage.increaseQuantityBy(2);
+    productDetailsPage.addToCart();
+
+    //Go to Home page
+    homePage.open();
+
+    //Add second item
+    searchComponent.searchBy("claw");
+    productList.viewProductDetails("Claw hammer with Shock Reduction Grip");
+    productDetailsPage.increaseQuantityBy(1);
+    productDetailsPage.addToCart();
+
+    //Go to Home page
+    homePage.open();
+
+    //Add second item
+    searchComponent.searchBy("drill");
+    productList.viewProductDetails("Cordless Drill 24V");
+    productDetailsPage.increaseQuantityBy(1);
+    productDetailsPage.addToCart();
+
+    navBar.openCart();
+
+    List<CartLineItem> lineItems = checkoutPage.getLineItems();
+
+    Assertions.assertThat(lineItems)
+            .hasSize(3)
+            .first()
+            .satisfies(
+                    item -> {
+                      Assertions.assertThat(item.title()).contains("Combination Pliers");
+                      Assertions.assertThat(item.quantity()).isEqualTo(3);
+                      Assertions.assertThat(item.total()).isEqualTo(item.quantity() * item.price());
+                    });
+
+    List<String> productNames = lineItems.stream().map(CartLineItem::title).toList();
+    Assertions.assertThat(productNames).contains("Combination Pliers", "Claw Hammer with Shock Reduction Grip", "Cordless Drill 24V");
+  }
+
 }
