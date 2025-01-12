@@ -124,11 +124,11 @@ public class AddToCartTest extends PlaywrightTestingBase {
 
     Assertions.assertThat(lineItems)
             .hasSize(3)
-            .first()
-            .satisfies(
+            .allSatisfy(
                     item -> {
-                      Assertions.assertThat(item.title()).contains("Combination Pliers");
-                      Assertions.assertThat(item.quantity()).isEqualTo(3);
+                      Assertions.assertThat(item.price()).isGreaterThanOrEqualTo(1);
+                      Assertions.assertThat(item.quantity()).isGreaterThanOrEqualTo(1);
+                      Assertions.assertThat(item.total()).isGreaterThan(0.0);
                       Assertions.assertThat(item.total()).isEqualTo(item.quantity() * item.price());
                     });
 

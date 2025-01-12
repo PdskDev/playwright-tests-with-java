@@ -22,7 +22,7 @@ public abstract class PlaywrightTestingBase {
         browser = playwright.chromium().launch(
                 new BrowserType.LaunchOptions()
                         .setHeadless(false)
-                        .setSlowMo(1000)
+                        .setSlowMo(100)
                         .setArgs(Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu"))
         );
     }
