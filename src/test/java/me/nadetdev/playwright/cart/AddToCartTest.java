@@ -53,7 +53,7 @@ public class AddToCartTest {
   void recordTrace(TestInfo testInfo, BrowserContext context){
     String traceName = testInfo.getDisplayName().replace(" ", "-").toLowerCase();
     context.tracing().stop(new Tracing.StopOptions()
-            .setPath(Paths.get("tests-" + traceName + "-trace.zip")));
+            .setPath(Paths.get("target/traces/trace-" + traceName + ".zip")));
   }
 
   @DisplayName("Without Page Objects")

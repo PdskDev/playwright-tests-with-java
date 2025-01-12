@@ -36,3 +36,21 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.zip
+*.tar.gz
+
+# Maven output dir
+target/
+.project
+.classpath
+.settings
+*.swp
