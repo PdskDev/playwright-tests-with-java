@@ -1,10 +1,12 @@
-package me.nadetdev.playwright.tutos;
+package me.nadetdev.playwright.contact;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.SelectOption;
+import me.nadetdev.playwright.config.PlaywrightChromeOptions;
+import me.nadetdev.playwright.tutos.AlterSimpleTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +19,7 @@ import java.nio.file.Paths;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-@UsePlaywright(AlterSimpleTest.CustomOptions.class)
+@UsePlaywright(PlaywrightChromeOptions.class)
 public class ContactFormTest {
 
   @BeforeEach

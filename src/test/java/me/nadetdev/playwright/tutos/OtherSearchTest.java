@@ -8,14 +8,13 @@ import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import me.nadetdev.playwright.config.PlaywrightChromeOptions;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Comparator;
 import java.util.List;
 
 @UsePlaywright(PlaywrightChromeOptions.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OtherSearchTest {
 
   @BeforeEach
@@ -26,6 +25,7 @@ public class OtherSearchTest {
 
   @DisplayName("making assertions about data values")
   @Test
+  @Order(1)
   void allProductPricesShouldBeCorrectValues(Page page) {
     List<Double> prices =
         page.getByTestId("product-price").allInnerTexts().stream()
@@ -42,6 +42,7 @@ public class OtherSearchTest {
 
   @DisplayName("making sort ASC")
   @Test
+  @Order(2)
   void shouldSortInAlphabeticOrder(Page page) {
     page.getByTestId("sort").selectOption("Name (A - Z)");
     page.waitForLoadState(LoadState.NETWORKIDLE);
@@ -57,6 +58,7 @@ public class OtherSearchTest {
 
   @DisplayName("making sort DESC")
   @Test
+  @Order(3)
   void shouldSortInReverseOrder(Page page) {
     page.getByTestId("sort").selectOption("Name (Z - A)");
     page.waitForLoadState(LoadState.NETWORKIDLE);
@@ -71,6 +73,7 @@ public class OtherSearchTest {
 
   @DisplayName("waiting for element")
   @Test
+  @Order(4)
   void shouldWaitShowAllProduct(Page page) {
     page.waitForSelector("[data-test='product-name']");
     List<String> productNames = page.getByTestId("product-name").allInnerTexts();
@@ -87,6 +90,7 @@ public class OtherSearchTest {
 
   @DisplayName("waiting for element")
   @Test
+  @Order(5)
   void shouldWaitElementCheked(Page page) {
     var screwdriverFilter = page.getByLabel("Screwdriver");
     screwdriverFilter.click();
@@ -95,6 +99,7 @@ public class OtherSearchTest {
 
   @DisplayName("should filter products by category")
   @Test
+  @Order(6)
   void shouldFilterProductByCategory(Page page) {
     page.getByRole(AriaRole.MENUBAR).getByText("Categories").click();
     page.getByRole(AriaRole.MENUBAR).getByText("Power Tools").click();

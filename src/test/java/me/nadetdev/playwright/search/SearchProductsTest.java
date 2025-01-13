@@ -6,12 +6,11 @@ import me.nadetdev.playwright.fixtures.PlaywrightTestingBase;
 import me.nadetdev.playwright.products.ProductListPage;
 import me.nadetdev.playwright.search.objects.SearchComponent;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class SearchProductsTest extends PlaywrightTestingBase {
 
     @BeforeEach

@@ -69,7 +69,7 @@ public class AddToCartTest {
     // Show details page
     page.locator(".card").getByText("Combination Pliers").click();
 
-    // Increase cart quanity
+    // Increase cart quantity
     page.getByTestId("increase-quantity").click();
     page.getByTestId("increase-quantity").click();
     // Add to cart

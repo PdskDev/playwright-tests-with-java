@@ -6,11 +6,14 @@ import com.microsoft.playwright.junit.Options;
 import com.microsoft.playwright.junit.OptionsFactory;
 import com.microsoft.playwright.junit.UsePlaywright;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.Arrays;
 
 @UsePlaywright(AlterSimpleTest.CustomOptions.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class AlterSimpleTest {
 
   @Test
