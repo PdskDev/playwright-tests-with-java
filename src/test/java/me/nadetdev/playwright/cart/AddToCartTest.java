@@ -62,6 +62,11 @@ public class AddToCartTest {
             .setPath(Paths.get("target/traces/trace-" + traceName + ".zip")));
   }
 
+  @AfterEach
+  void takeAScreenShot(Page page){
+    ScreenManager.takeScreenshot(page, "Final screen");
+  }
+
   @Test
   @Story("Search and add to cart without page objects")
   @DisplayName("Without Page Objects")
@@ -89,7 +94,6 @@ public class AddToCartTest {
     // check cart contents
     assertThat(page.locator(".product-title").getByText("Combination Pliers")).isVisible();
     assertThat(page.getByTestId("cart-quantity").getByText("3")).isVisible();
-    ScreenManager.takeScreenshot(page, "Search and add to cart");
   }
 
   @Test
