@@ -8,6 +8,7 @@ import com.microsoft.playwright.options.SelectOption;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import me.nadetdev.playwright.config.PlaywrightChromeOptions;
+import me.nadetdev.playwright.fixtures.PlaywrightTestingBase;
 import me.nadetdev.playwright.tutos.AlterSimpleTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -21,11 +22,10 @@ import java.nio.file.Paths;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 @Feature("Contact form")
-@UsePlaywright(PlaywrightChromeOptions.class)
-public class ContactFormTest {
+public class ContactFormTest extends PlaywrightTestingBase {
 
   @BeforeEach
-  void setUp(Page page) {
+  void setUp() {
     page.navigate("https://practicesoftwaretesting.com/contact");
     page.waitForLoadState(LoadState.NETWORKIDLE);
   }
@@ -34,7 +34,7 @@ public class ContactFormTest {
   @Test
   @Story("Interact with text fields")
   @DisplayName("Interact with text fields")
-  void whenInteractWithTextFields(Page page) throws URISyntaxException {
+  void whenInteractWithTextFields() throws URISyntaxException {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
     var emailAddressField = page.getByLabel("Email");
@@ -64,9 +64,9 @@ public class ContactFormTest {
   }
 
   @Test
-  @Story("Interact with mandatory fields")
-  @DisplayName("Interact with mandatory fields")
-  void whenInteractWithMandatoryFields(Page page) {
+  @Story("Interact with mandatory fields 1")
+  @DisplayName("Interact with mandatory fields 1")
+  void whenInteractWithMandatoryFields() {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
     var emailAddressField = page.getByLabel("Email");
@@ -81,11 +81,11 @@ public class ContactFormTest {
     assertThat(errorMessage).isVisible();
   }
 
-  @Story("Interact with mandatory fields")
-  @DisplayName("Interact with mandatory fields")
+  @Story("Interact with mandatory fields 2")
+  @DisplayName("Interact with mandatory fields 2")
   @ParameterizedTest
   @ValueSource(strings = {"First name", "Last name", "Email", "Message"})
-  void whenInteractWithMandatoryFieldsParameterized(String fieldName, Page page) {
+  void whenInteractWithMandatoryFieldsParameterized(String fieldName) {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
     var emailAddressField = page.getByLabel("Email");

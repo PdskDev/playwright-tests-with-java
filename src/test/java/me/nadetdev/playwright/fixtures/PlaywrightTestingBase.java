@@ -1,6 +1,8 @@
 package me.nadetdev.playwright.fixtures;
 
 import com.microsoft.playwright.*;
+import io.qameta.allure.Allure;
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -50,6 +52,12 @@ public abstract class PlaywrightTestingBase {
 
   @AfterEach
   void closeContext() {
+    takeScreenshot();
     browserContext.close();
+  }
+
+  protected void takeScreenshot() {
+    var screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
+    Allure.addAttachment("End of test", new ByteArrayInputStream(screenshot));
   }
 }
