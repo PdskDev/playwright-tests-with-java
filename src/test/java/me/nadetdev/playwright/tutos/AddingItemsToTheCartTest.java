@@ -6,6 +6,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.junit.UsePlaywright;
 import me.nadetdev.playwright.config.PlaywrightChromeOptions;
 
+import me.nadetdev.playwright.fixtures.ScreenManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,7 @@ public class AddingItemsToTheCartTest {
 
         PlaywrightAssertions.assertThat(outOfStockItem).hasCount(1);
         PlaywrightAssertions.assertThat(outOfStockItem).hasText("Long Nose Pliers");
+        ScreenManager.takeScreenshot(page, "Search for pliers");
     }
 
 

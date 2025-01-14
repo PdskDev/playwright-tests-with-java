@@ -15,6 +15,7 @@ import io.qameta.allure.Story;
 import me.nadetdev.playwright.cart.objects.CartLineItem;
 import me.nadetdev.playwright.cart.objects.CheckoutPage;
 import me.nadetdev.playwright.config.PlaywrightChromeOptions;
+import me.nadetdev.playwright.fixtures.ScreenManager;
 import me.nadetdev.playwright.home.HomePage;
 import me.nadetdev.playwright.navbar.objects.NavBarComponent;
 import me.nadetdev.playwright.products.ProductDetailsPage;
@@ -88,6 +89,7 @@ public class AddToCartTest {
     // check cart contents
     assertThat(page.locator(".product-title").getByText("Combination Pliers")).isVisible();
     assertThat(page.getByTestId("cart-quantity").getByText("3")).isVisible();
+    ScreenManager.takeScreenshot(page, "Search and add to cart");
   }
 
   @Test

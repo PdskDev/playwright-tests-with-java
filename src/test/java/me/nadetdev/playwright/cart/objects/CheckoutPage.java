@@ -1,6 +1,8 @@
 package me.nadetdev.playwright.cart.objects;
 
 import com.microsoft.playwright.Page;
+import me.nadetdev.playwright.fixtures.ScreenManager;
+
 import java.util.List;
 
 public class CheckoutPage {
@@ -12,6 +14,7 @@ public class CheckoutPage {
 
   public List<CartLineItem> getLineItems() {
     page.locator("app-cart tbody tr").first().waitFor();
+    ScreenManager.takeScreenshot(page, "Cart items page");
     return page.locator("app-cart tbody tr").all().stream()
         .map(
             row -> {

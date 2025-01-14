@@ -52,12 +52,12 @@ public abstract class PlaywrightTestingBase {
 
   @AfterEach
   void closeContext() {
-    takeScreenshot();
+    //takeScreenshot();
     browserContext.close();
   }
 
-  protected void takeScreenshot() {
+  /*protected void takeScreenshot() {
     var screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
     Allure.addAttachment("End of test", new ByteArrayInputStream(screenshot));
-  }
+  }*/
 }
