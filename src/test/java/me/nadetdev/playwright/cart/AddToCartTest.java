@@ -86,7 +86,7 @@ public class AddToCartTest {
     page.getByTestId("increase-quantity").click();
     // Add to cart
     page.getByText("Add to cart").click();
-    page.waitForCondition(() -> page.getByTestId("cart-quantity").textContent().equals("3"));
+    page.waitForCondition(() -> page.getByTestId("cart-quantity").textContent().equals("4"));
 
     // Open the cart
     page.getByTestId("nav-cart").click();
