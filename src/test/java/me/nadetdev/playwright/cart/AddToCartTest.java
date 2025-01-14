@@ -9,6 +9,9 @@ import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 import java.nio.file.Paths;
 import java.util.List;
+
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import me.nadetdev.playwright.cart.objects.CartLineItem;
 import me.nadetdev.playwright.cart.objects.CheckoutPage;
 import me.nadetdev.playwright.config.PlaywrightChromeOptions;
@@ -20,6 +23,8 @@ import me.nadetdev.playwright.search.objects.SearchComponent;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
+@DisplayName("Adding items to the cart")
+@Feature("Shopping Cart")
 @UsePlaywright(PlaywrightChromeOptions.class)
 public class AddToCartTest {
   HomePage homePage;
@@ -56,8 +61,9 @@ public class AddToCartTest {
             .setPath(Paths.get("target/traces/trace-" + traceName + ".zip")));
   }
 
-  @DisplayName("Without Page Objects")
   @Test
+  @Story("Search and add to cart without page objects")
+  @DisplayName("Without Page Objects")
   void withoutPageObjects(Page page) {
     // Search for pliers
     page.waitForResponse(
@@ -84,8 +90,9 @@ public class AddToCartTest {
     assertThat(page.getByTestId("cart-quantity").getByText("3")).isVisible();
   }
 
-  @DisplayName("With Page Objects")
   @Test
+  @Story("Search and add to cart with page objects")
+  @DisplayName("With Page Objects")
   void withObjectsAddToCartAndViewCart() {
     searchComponent.searchBy("pliers");
     productList.viewProductDetails("Combination Pliers");
@@ -108,8 +115,9 @@ public class AddToCartTest {
             });
   }
 
-  @DisplayName("WithPage Objects add multiple items to cart")
   @Test
+  @Story("Search and add multiple items to cart with page objects")
+  @DisplayName("WithPage Objects add multiple items to cart")
   void withObjectAddMultipleItemsToCard() {
     //Add first item
     searchComponent.searchBy("pliers");
@@ -153,8 +161,9 @@ public class AddToCartTest {
     Assertions.assertThat(productNames).contains("Combination Pliers", "Claw Hammer with Shock Reduction Grip", "Cordless Drill 24V");
   }
 
-  @DisplayName("search for unknown product name")
   @Test
+  @Story("Search for unknown product name")
+  @DisplayName("search for unknown product name")
   void whenSearchUnknownProductName() {
 
     searchComponent.searchBy("no-product-name");
@@ -164,8 +173,10 @@ public class AddToCartTest {
     Assertions.assertThat(productList.noProductsFound()).contains("There are no products found.");
   }
 
-  @DisplayName("reset search form and get default products")
+
   @Test
+  @Story("Reset search form and get default products")
+  @DisplayName("reset search form and get default products")
   void whenResetSearchFormAndGetDefaultProducts() {
 
     searchComponent.searchBy("pliers");

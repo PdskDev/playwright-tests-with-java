@@ -2,6 +2,8 @@ package me.nadetdev.playwright.search;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import me.nadetdev.playwright.fixtures.PlaywrightTestingBase;
 import me.nadetdev.playwright.products.ProductListPage;
 import me.nadetdev.playwright.search.objects.SearchComponent;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.List;
 
+@Feature("Search products catalog")
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class SearchProductsTest extends PlaywrightTestingBase {
 
@@ -18,8 +21,9 @@ public class SearchProductsTest extends PlaywrightTestingBase {
         page.navigate("https://practicesoftwaretesting.com");
     }
 
-    @DisplayName("Without Page Objects")
     @Test
+    @Story("Search for product without page objects")
+    @DisplayName("Without Page Objects")
     void withoutPageObjects() {
         page.waitForResponse("**/products/search?q=tape", () -> {
             page.getByPlaceholder("Search").fill("tape");
@@ -31,8 +35,9 @@ public class SearchProductsTest extends PlaywrightTestingBase {
                 .contains("Tape Measure 7.5m", "Measuring Tape", "Tape Measure 5m");
     }
 
-    @DisplayName("With Page Objects")
     @Test
+    @Story("Search for product with page objects")
+    @DisplayName("With Page Objects")
     void withPageObjects(){
         SearchComponent searchComponent = new SearchComponent(page);
         searchComponent.searchBy("tape");

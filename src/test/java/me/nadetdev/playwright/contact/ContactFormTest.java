@@ -5,6 +5,8 @@ import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.SelectOption;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import me.nadetdev.playwright.config.PlaywrightChromeOptions;
 import me.nadetdev.playwright.tutos.AlterSimpleTest;
 import org.assertj.core.api.Assertions;
@@ -18,7 +20,7 @@ import java.nio.file.Paths;
 
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-
+@Feature("Contact form")
 @UsePlaywright(PlaywrightChromeOptions.class)
 public class ContactFormTest {
 
@@ -28,8 +30,10 @@ public class ContactFormTest {
     page.waitForLoadState(LoadState.NETWORKIDLE);
   }
 
-  @DisplayName("Interact with text fields")
+
   @Test
+  @Story("Interact with text fields")
+  @DisplayName("Interact with text fields")
   void whenInteractWithTextFields(Page page) throws URISyntaxException {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
@@ -59,8 +63,9 @@ public class ContactFormTest {
     Assertions.assertThat(uploadedFile).endsWith("sample-data.txt");
   }
 
-  @DisplayName("Interact with mandatory fields")
   @Test
+  @Story("Interact with mandatory fields")
+  @DisplayName("Interact with mandatory fields")
   void whenInteractWithMandatoryFields(Page page) {
     var firstNameField = page.getByLabel("First name");
     var lastNameField = page.getByLabel("Last name");
@@ -76,6 +81,7 @@ public class ContactFormTest {
     assertThat(errorMessage).isVisible();
   }
 
+  @Story("Interact with mandatory fields")
   @DisplayName("Interact with mandatory fields")
   @ParameterizedTest
   @ValueSource(strings = {"First name", "Last name", "Email", "Message"})

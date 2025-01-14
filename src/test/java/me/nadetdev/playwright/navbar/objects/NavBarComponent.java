@@ -1,6 +1,7 @@
 package me.nadetdev.playwright.navbar.objects;
 
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 
 public class NavBarComponent {
     private final Page page;
@@ -9,6 +10,7 @@ public class NavBarComponent {
         this.page = page;
     }
 
+    @Step("Open shopping cart page")
     public void openCart() {
         page.getByTestId("nav-cart").click();
     }
