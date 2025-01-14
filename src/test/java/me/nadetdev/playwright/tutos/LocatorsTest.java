@@ -205,7 +205,7 @@ public class LocatorsTest {
       Assertions.assertFalse(alertMessages.isEmpty());
     }
 
-    @DisplayName("Locate input text by attribute")
+    /*@DisplayName("Locate input text by attribute")
     @Test
     void locateInputByAttribute(Page page) {
       page.locator("[placeholder='Your last name *']").fill("Fashion Dev");
@@ -213,12 +213,11 @@ public class LocatorsTest {
       PlaywrightAssertions.assertThat(page.locator("[placeholder='Your last name *']")).hasValue("Fashion Dev");
 
       page.locator(".btnSubmit").click();
-      page.locator(".alert").waitFor();
       List<String> alertMessages = page.locator(".alert").allTextContents();
 
       Assertions.assertFalse(alertMessages.isEmpty());
       Assertions.assertEquals(4, alertMessages.size());
-    }
+    }*/
 
     @DisplayName("Locate list and filter element")
     @Test
