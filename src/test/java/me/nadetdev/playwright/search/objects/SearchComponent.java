@@ -28,4 +28,9 @@ public class SearchComponent {
     page.waitForResponse("**/products?between**", () -> page.getByTestId("search-reset").click());
       ScreenManager.takeScreenshot(page, "Clear seach");
   }
+
+  @Step("Clear filter")
+  public void filterBy(String filterName) {
+    page.waitForResponse("**/products?**by_category**", () -> page.getByLabel(filterName).click());
+  }
 }
