@@ -24,7 +24,7 @@ public class PlaywrightCucumberFixtures {
                                 .chromium()
                                 .launch(
                                         new BrowserType.LaunchOptions()
-                                                .setHeadless(true)
+                                                .setHeadless(false)
                                                 .setSlowMo(100)
                                                 .setArgs(
                                                         Arrays.asList(
