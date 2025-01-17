@@ -17,6 +17,13 @@ public class NavBarComponent {
         ScreenManager.takeScreenshot(page, "Open shopping cart");
     }
 
+    @Step("Open home page")
+    public void openHome() {
+        page.navigate("https://practicesoftwaretesting.com");
+        page.getByTestId("nav-home").click();
+        ScreenManager.takeScreenshot(page, "Open home page");
+    }
+
     /*public void openCartByQty(int qty) {
         page.waitForCondition(() ->
                 page.getByTestId("cart-quantity").textContent().equals(String.valueOf(qty)));

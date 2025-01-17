@@ -9,5 +9,5 @@ Feature: Products catalog
   Rule: Customers should be able to search for products by name
     Example: The one where Sally searchs for an Ajustable Wrench
       Given Sally is on the home page
-      When Sally searchs for an "Ajustable Wrench"
-      Then the "Ajustable Wrench" product should be displayed
+      When Sally searchs for an "pliers"
+      Then the "Combination Pliers" product should be displayed
