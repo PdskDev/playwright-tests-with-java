@@ -33,4 +33,9 @@ public class SearchComponent {
   public void filterBy(String filterName) {
     page.waitForResponse("**/products?**by_category**", () -> page.getByLabel(filterName).click());
   }
+
+  @Step("Clear sort")
+  public void sortBy(String sortFilter) {
+    page.getByTestId("sort").selectOption(sortFilter);
+  }
 }

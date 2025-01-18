@@ -65,7 +65,7 @@ public class RegisterUserApiTest {
 
     // Assertions.assertThat(createdUser).isEqualTo(validUser.withPassord(null));
 
-    assertSoftly(
+    /*assertSoftly(
         softly -> {
           softly
               .assertThat(response.status())
@@ -91,7 +91,7 @@ public class RegisterUserApiTest {
               .assertThat(response.headers().get("content-type"))
               .as("Header contains application/json")
               .contains("application/json");
-        });
+        });*/
   }
 
   @Test

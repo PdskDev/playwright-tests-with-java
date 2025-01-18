@@ -7,14 +7,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.util.List;
+import java.util.Map;
 import me.nadetdev.playwright.fixtures.ProductSummary;
 import me.nadetdev.playwright.navbar.objects.NavBarComponent;
 import me.nadetdev.playwright.products.ProductListPage;
 import me.nadetdev.playwright.search.objects.SearchComponent;
 import org.assertj.core.api.Assertions;
-
-import java.util.List;
-import java.util.Map;
 
 public class ProductCatalogStepDefinitions {
   NavBarComponent navBar;
@@ -91,5 +90,16 @@ public class ProductCatalogStepDefinitions {
   @And("she filters by {string}")
   public void sheFiltersBy(String filter) {
     searchComponent.filterBy(filter);
+  }
+
+  @When("she sorts by {string}")
+  public void sheSortsBy(String sortFilter) {
+    searchComponent.sortBy(sortFilter);
+  }
+
+  @Then("the first product displayed should be {string}")
+  public void theFirstProductDisplayedShouldBe(String firstProductName) {
+    List<String> productNames = productListPage.getProductNames();
+    Assertions.assertThat(productNames).startsWith(firstProductName);
   }
 }

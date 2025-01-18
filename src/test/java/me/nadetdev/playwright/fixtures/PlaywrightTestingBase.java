@@ -1,8 +1,6 @@
 package me.nadetdev.playwright.fixtures;
 
 import com.microsoft.playwright.*;
-import io.qameta.allure.Allure;
-import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
