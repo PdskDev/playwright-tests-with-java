@@ -1,0 +1,70 @@
+name: Playwright Tests
+
+on:
+    push:
+        branches: [ "master" ]
+    pull_request:
+        branches: [ "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      #Setp 1: checkout repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+#     #Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+         node-version: '20'
+
+      #Step 3: Set up Java 21
+      - name: Set up java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      #Step 4: Set up Maven 3.9.9
+      - name: Set up Maven 3.9.9
+        uses: s4u/setup-maven-action@v1.7.0
+        with:
+          checkout-fetch-depth: 0
+          java-version: 21
+          java-distribution: temurin
+          maven-version: 3.9.9
+
+      #Step 5: Install Playwright OS Libraries
+      - name: Install Playwright dependencies
+        run: npx playwright install-deps
+
+      #Step 6: Cache Maven dependencies
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven
+
+      #Step 7: Run Playwright Tests
+      - name: Run Playwright Tests
+        run: mvn verify
+
+      #Step 8: Archive trace files
+      - name: Archive trace files
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: traces
+          path: target/traces/*.zip
+
+      #Step 9: Deploy Allure report to GitHub Pages
+      - name: Deploy Allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PLAYWRIGHT_TESTS_TUTO  }}
+          publish_dir: target/site/allure-maven-plugin
