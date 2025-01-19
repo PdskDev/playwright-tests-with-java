@@ -66,5 +66,5 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.PLYWRIGHT_KEY_FOR_PAGE  }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: target/site/allure-maven-plugin
