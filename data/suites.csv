@@ -1,0 +1,112 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Jan 19 11:32:36 UTC 2025","Sun Jan 19 11:32:37 UTC 2025","1319","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByCSSSelectors","byCssClassSelector","Locate element by CSS selector",""
+"passed","Sun Jan 19 11:31:54 UTC 2025","Sun Jan 19 11:31:55 UTC 2025","1239","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Court Hammer, price=18.63]",""
+"passed","Sun Jan 19 11:31:44 UTC 2025","Sun Jan 19 11:31:46 UTC 2025","1500","","me.nadetdev.playwright.login.RegisterUserApiTest","","me.nadetdev.playwright.login.RegisterUserApiTest","first_name_is_mandatory","first_name_is_mandatory()",""
+"passed","Sun Jan 19 11:32:34 UTC 2025","Sun Jan 19 11:32:36 UTC 2025","1511","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsUsingCSS","searchOfPliers","Locate list and filter element",""
+"passed","Sun Jan 19 11:32:19 UTC 2025","Sun Jan 19 11:32:21 UTC 2025","1521","","me.nadetdev.playwright.tutos.OtherSearchTest","","me.nadetdev.playwright.tutos.OtherSearchTest","shouldSortInAlphabeticOrder","making sort ASC",""
+"passed","Sun Jan 19 11:33:06 UTC 2025","Sun Jan 19 11:33:13 UTC 2025","6343","","Products catalog","","The one where Sally only wants to see Hand Saws","","The one where Sally only wants to see Hand Saws","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:31:04 UTC 2025","Sun Jan 19 11:31:06 UTC 2025","2182","","me.nadetdev.playwright.contact.ContactFormTest","","me.nadetdev.playwright.contact.ContactFormTest","whenInteractWithMandatoryFieldsParameterized","Interact with mandatory fields 2 [1] fieldName=First name",""
+"passed","Sun Jan 19 11:31:57 UTC 2025","Sun Jan 19 11:31:59 UTC 2025","1261","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Adjustable Wrench, price=20.33]",""
+"passed","Sun Jan 19 11:31:46 UTC 2025","Sun Jan 19 11:31:48 UTC 2025","1994","","me.nadetdev.playwright.search.SearchProductsTest","","me.nadetdev.playwright.search.SearchProductsTest","withPageObjects","With Page Objects",""
+"passed","Sun Jan 19 11:32:19 UTC 2025","Sun Jan 19 11:32:19 UTC 2025","770","","me.nadetdev.playwright.tutos.OtherSearchTest","","me.nadetdev.playwright.tutos.OtherSearchTest","allProductPricesShouldBeCorrectValues","making assertions about data values",""
+"passed","Sun Jan 19 11:31:18 UTC 2025","Sun Jan 19 11:31:31 UTC 2025","13124","","Adding items to the cart","","me.nadetdev.playwright.cart.AddToCartTest","withObjectAddMultipleItemsToCard","WithPage Objects add multiple items to cart",""
+"passed","Sun Jan 19 11:31:44 UTC 2025","Sun Jan 19 11:31:44 UTC 2025","483","","me.nadetdev.playwright.login.RegisterUserApiTest","","me.nadetdev.playwright.login.RegisterUserApiTest","shouldRegisterNewUser","shouldRegisterNewUser()",""
+"passed","Sun Jan 19 11:33:10 UTC 2025","Sun Jan 19 11:33:15 UTC 2025","4799","","Products catalog","","The one where Sally searchs for more general term","","The one where Sally searchs for more general term","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:33:05 UTC 2025","Sun Jan 19 11:33:10 UTC 2025","5152","","Products catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:57 UTC 2025","Sun Jan 19 11:32:58 UTC 2025","587","","me.nadetdev.playwright.tutos.AlterSimpleTest","","me.nadetdev.playwright.tutos.AlterSimpleTest","shouldSearchByKeyword","shouldSearchByKeyword(Page)",""
+"passed","Sun Jan 19 11:31:31 UTC 2025","Sun Jan 19 11:31:32 UTC 2025","709","","Adding items to the cart","","me.nadetdev.playwright.cart.AddToCartTest","withoutPageObjects","Without Page Objects",""
+"passed","Sun Jan 19 11:31:51 UTC 2025","Sun Jan 19 11:31:52 UTC 2025","1843","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Sledgehammer, price=17.75]",""
+"passed","Sun Jan 19 11:32:23 UTC 2025","Sun Jan 19 11:32:24 UTC 2025","776","","me.nadetdev.playwright.tutos.OtherSearchTest","","me.nadetdev.playwright.tutos.OtherSearchTest","shouldWaitElementCheked","waiting for element",""
+"passed","Sun Jan 19 11:31:59 UTC 2025","Sun Jan 19 11:32:00 UTC 2025","1112","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Angled Spanner, price=14.14]",""
+"passed","Sun Jan 19 11:32:59 UTC 2025","Sun Jan 19 11:33:05 UTC 2025","6626","","Products catalog","","The one where Sally searchs for more general term","","The one where Sally searchs for more general term","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:53 UTC 2025","Sun Jan 19 11:32:55 UTC 2025","1648","","Locating element by text","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByText","byText","Locate element by text content",""
+"passed","Sun Jan 19 11:32:47 UTC 2025","Sun Jan 19 11:32:48 UTC 2025","1681","","Locating element by multiple match","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsWithMultiplematch","byNthElement","Locate element by nth match",""
+"passed","Sun Jan 19 11:31:06 UTC 2025","Sun Jan 19 11:31:08 UTC 2025","2176","","me.nadetdev.playwright.contact.ContactFormTest","","me.nadetdev.playwright.contact.ContactFormTest","whenInteractWithMandatoryFieldsParameterized","Interact with mandatory fields 2 [2] fieldName=Last name",""
+"passed","Sun Jan 19 11:32:40 UTC 2025","Sun Jan 19 11:32:42 UTC 2025","1643","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByCSSSelectors","byCssTagAndAttribute","Locate element by tag + attribute",""
+"passed","Sun Jan 19 11:32:51 UTC 2025","Sun Jan 19 11:32:53 UTC 2025","1771","","Locating element by text","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByText","byAltText","Locate element by alt text",""
+"passed","Sun Jan 19 11:31:48 UTC 2025","Sun Jan 19 11:31:49 UTC 2025","1108","","me.nadetdev.playwright.search.SearchProductsTest","","me.nadetdev.playwright.search.SearchProductsTest","withoutPageObjects","Without Page Objects",""
+"passed","Sun Jan 19 11:32:55 UTC 2025","Sun Jan 19 11:32:57 UTC 2025","2381","","Locating element by text","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByText","byTitle","Locate element by title",""
+"passed","Sun Jan 19 11:32:58 UTC 2025","Sun Jan 19 11:32:58 UTC 2025","375","","me.nadetdev.playwright.tutos.AlterSimpleTest","","me.nadetdev.playwright.tutos.AlterSimpleTest","shouldShowThePageTitle","shouldShowThePageTitle(Page)",""
+"passed","Sun Jan 19 11:31:14 UTC 2025","Sun Jan 19 11:31:18 UTC 2025","3681","","Adding items to the cart","","me.nadetdev.playwright.cart.AddToCartTest","whenResetSearchFormAndGetDefaultProducts","reset search form and get default products",""
+"passed","Sun Jan 19 11:32:31 UTC 2025","Sun Jan 19 11:32:32 UTC 2025","569","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsUsingCSS","locateButtonByCssClass","Locate button by Css class",""
+"passed","Sun Jan 19 11:32:48 UTC 2025","Sun Jan 19 11:32:50 UTC 2025","1461","","Locating element by TestId","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByTestId","byTestId","Locate element by test id",""
+"passed","Sun Jan 19 11:32:22 UTC 2025","Sun Jan 19 11:32:23 UTC 2025","786","","me.nadetdev.playwright.tutos.OtherSearchTest","","me.nadetdev.playwright.tutos.OtherSearchTest","shouldWaitShowAllProduct","waiting for element",""
+"passed","Sun Jan 19 11:31:39 UTC 2025","Sun Jan 19 11:31:42 UTC 2025","2356","","me.nadetdev.playwright.login.LoginWithRegisteredUserTest","","me.nadetdev.playwright.login.LoginWithRegisteredUserTest","should_reject_user_with_invalid_password","Should reject user if he provie an invalid password",""
+"passed","Sun Jan 19 11:31:55 UTC 2025","Sun Jan 19 11:31:57 UTC 2025","1809","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Wood Saw, price=12.18]",""
+"passed","Sun Jan 19 11:31:08 UTC 2025","Sun Jan 19 11:31:10 UTC 2025","2143","","me.nadetdev.playwright.contact.ContactFormTest","","me.nadetdev.playwright.contact.ContactFormTest","whenInteractWithMandatoryFieldsParameterized","Interact with mandatory fields 2 [3] fieldName=Email",""
+"passed","Sun Jan 19 11:32:39 UTC 2025","Sun Jan 19 11:32:40 UTC 2025","1313","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByCSSSelectors","byCssId","Locate element by CSS Id",""
+"passed","Sun Jan 19 11:33:10 UTC 2025","Sun Jan 19 11:33:15 UTC 2025","5140","","Products catalog","","The one where Sally searchs for an pliers","","The one where Sally searchs for an pliers","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:43 UTC 2025","Sun Jan 19 11:32:45 UTC 2025","1666","","Locating element by multiple match","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsWithMultiplematch","byFirstElement","Locate element by first match",""
+"passed","Sun Jan 19 11:32:02 UTC 2025","Sun Jan 19 11:32:03 UTC 2025","1148","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Mini Screwdriver, price=13.96]",""
+"passed","Sun Jan 19 11:31:49 UTC 2025","Sun Jan 19 11:31:50 UTC 2025","420","","me.nadetdev.playwright.tutos.SimpleTest","","me.nadetdev.playwright.tutos.SimpleTest","shouldShowThePageTitle","shouldShowThePageTitle()",""
+"passed","Sun Jan 19 11:31:52 UTC 2025","Sun Jan 19 11:31:54 UTC 2025","1785","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Claw Hammer with Fiberglass Handle, price=20.14]",""
+"failed","Sun Jan 19 11:32:26 UTC 2025","Sun Jan 19 11:32:31 UTC 2025","5555","","me.nadetdev.playwright.tutos.AddingItemsToTheCartTest","","me.nadetdev.playwright.tutos.AddingItemsToTheCartTest","searchForPliers","Search for pliers",""
+"passed","Sun Jan 19 11:32:05 UTC 2025","Sun Jan 19 11:32:19 UTC 2025","13996","","me.nadetdev.playwright.tutos.WaitingElementAppearDisappearTest","","me.nadetdev.playwright.tutos.WaitingElementAppearDisappearTest","shouldWaitElementAppear","waiting element appears",""
+"passed","Sun Jan 19 11:31:12 UTC 2025","Sun Jan 19 11:31:14 UTC 2025","1879","","me.nadetdev.playwright.contact.ContactFormTest","","me.nadetdev.playwright.contact.ContactFormTest","whenInteractWithTextFields","Interact with text fields",""
+"passed","Sun Jan 19 11:31:32 UTC 2025","Sun Jan 19 11:31:37 UTC 2025","5468","","Adding items to the cart","","me.nadetdev.playwright.cart.AddToCartTest","withObjectsAddToCartAndViewCart","With Page Objects",""
+"passed","Sun Jan 19 11:32:59 UTC 2025","Sun Jan 19 11:33:05 UTC 2025","6008","","Products catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:37 UTC 2025","Sun Jan 19 11:32:39 UTC 2025","1402","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByCSSSelectors","byCssHasText","Locate element by CSS selector",""
+"passed","Sun Jan 19 11:32:01 UTC 2025","Sun Jan 19 11:32:02 UTC 2025","1185","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Phillips Screwdriver, price=4.92]",""
+"passed","Sun Jan 19 11:32:21 UTC 2025","Sun Jan 19 11:32:22 UTC 2025","1586","","me.nadetdev.playwright.tutos.OtherSearchTest","","me.nadetdev.playwright.tutos.OtherSearchTest","shouldSortInReverseOrder","making sort DESC",""
+"passed","Sun Jan 19 11:32:24 UTC 2025","Sun Jan 19 11:32:26 UTC 2025","1552","","me.nadetdev.playwright.tutos.OtherSearchTest","","me.nadetdev.playwright.tutos.OtherSearchTest","shouldFilterProductByCategory","should filter products by category",""
+"passed","Sun Jan 19 11:33:12 UTC 2025","Sun Jan 19 11:33:16 UTC 2025","3618","","Products catalog","","The one where Sally searchs for more general term","","The one where Sally searchs for more general term","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:42 UTC 2025","Sun Jan 19 11:32:43 UTC 2025","1780","","Locating element by multiple match","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsWithMultiplematch","byAllElements","Locate element by all matchs",""
+"passed","Sun Jan 19 11:33:06 UTC 2025","Sun Jan 19 11:33:12 UTC 2025","6530","","Products catalog","","The one where Sally searchs for more general term","","The one where Sally searchs for more general term","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:31:10 UTC 2025","Sun Jan 19 11:31:12 UTC 2025","2145","","me.nadetdev.playwright.contact.ContactFormTest","","me.nadetdev.playwright.contact.ContactFormTest","whenInteractWithMandatoryFieldsParameterized","Interact with mandatory fields 2 [4] fieldName=Message",""
+"passed","Sun Jan 19 11:32:00 UTC 2025","Sun Jan 19 11:32:01 UTC 2025","1140","","me.nadetdev.playwright.tutos.ApiCallTest","","me.nadetdev.playwright.tutos.ApiCallTest","shouldCheckKnownProduct","Check presence of known products Checking product Product[name=Open-end Spanners (Set), price=38.51]",""
+"passed","Sun Jan 19 11:32:03 UTC 2025","Sun Jan 19 11:32:05 UTC 2025","1372","","me.nadetdev.playwright.tutos.WaitingElementAppearDisappearTest","","me.nadetdev.playwright.tutos.WaitingElementAppearDisappearTest","shouldWaitingForApiCall","waiting for API calls",""
+"passed","Sun Jan 19 11:31:50 UTC 2025","Sun Jan 19 11:31:50 UTC 2025","567","","me.nadetdev.playwright.tutos.SimpleTest","","me.nadetdev.playwright.tutos.SimpleTest","shouldSearchByKeyword","shouldSearchByKeyword()",""
+"passed","Sun Jan 19 11:32:59 UTC 2025","Sun Jan 19 11:33:05 UTC 2025","6352","","Products catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:59 UTC 2025","Sun Jan 19 11:33:06 UTC 2025","7592","","Products catalog","","The one where Sally only wants to see Power Drills","","The one where Sally only wants to see Power Drills","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:30:51 UTC 2025","Sun Jan 19 11:31:04 UTC 2025","13021","","me.nadetdev.playwright.contact.ContactFormTest","","me.nadetdev.playwright.contact.ContactFormTest","whenInteractWithMandatoryFields","Interact with mandatory fields 1",""
+"passed","Sun Jan 19 11:31:37 UTC 2025","Sun Jan 19 11:31:39 UTC 2025","1785","","Adding items to the cart","","me.nadetdev.playwright.cart.AddToCartTest","whenSearchUnknownProductName","search for unknown product name",""
+"passed","Sun Jan 19 11:32:32 UTC 2025","Sun Jan 19 11:32:32 UTC 2025","376","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsUsingCSS","locateInputFirstNameById","Locate input text by Id",""
+"passed","Sun Jan 19 11:33:05 UTC 2025","Sun Jan 19 11:33:10 UTC 2025","4956","","Products catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter and sort products in a catalog
+  So that I can find the product I am looking for.
+
+  Sally is a online customer"
+"passed","Sun Jan 19 11:32:32 UTC 2025","Sun Jan 19 11:32:34 UTC 2025","2188","","Locating element by CSS Selectors","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsUsingCSS","locateListAndFilterElement","Locate list and filter element",""
+"passed","Sun Jan 19 11:32:50 UTC 2025","Sun Jan 19 11:32:51 UTC 2025","1442","","Locating element by labels and placeholder","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsByLabelsAndPlaceholders","byLabelAndPlaceholder","Locate element by label",""
+"passed","Sun Jan 19 11:31:42 UTC 2025","Sun Jan 19 11:31:44 UTC 2025","2179","","me.nadetdev.playwright.login.LoginWithRegisteredUserTest","","me.nadetdev.playwright.login.LoginWithRegisteredUserTest","should_login_with_registered_user","Should be able to login with a registered user",""
+"passed","Sun Jan 19 11:32:45 UTC 2025","Sun Jan 19 11:32:47 UTC 2025","1680","","Locating element by multiple match","","me.nadetdev.playwright.tutos.LocatorsTest$LocaltingElementsWithMultiplematch","byLastElement","Locate element by last match",""
